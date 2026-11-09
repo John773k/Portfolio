@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="site-header">
+  <a class="brand" href="#home">P<span>JP</span>.</a>
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <nav class="nav-links">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    <button class="theme-toggle" aria-label="Toggle color theme">◐</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero section" id="home">
+  <div class="hero-copy reveal">
+    <p class="eyebrow"><span class="status-dot"></span> OPEN TO OPPORTUNITIES <span class="mono">/ 2026</span></p>
+    <h1>Ideas into<br><span class="gradient-text">impactful code.</span></h1>
+    <p class="hero-intro">I'm <strong>Palipe John Paul</strong>, a developer focused on Python, thoughtful user experiences and building software that solves real problems.</p>
+    <div class="typing-line"><span class="mono">I BUILD </span><span id="typed-word">web applications</span><span class="cursor">|</span></div>
+    <div class="hero-actions"><a class="btn btn-primary" href="#projects">Explore my work <span>↗</span></a><a class="btn btn-ghost" href="#contact">Let's talk</a></div>
+    <div class="social-row"><a href="https://github.com/" target="_blank" rel="noreferrer">GITHUB ↗</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="mailto:hello@example.com">EMAIL ↗</a></div>
+  </div>
+  <div class="hero-art reveal">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <div class="art-glow"></div>
+    <div class="code-card"><div class="code-top"><i></i><i></i><i></i><span>developer.py</span></div>
+      <pre><span class="code-purple">class</span> Developer:
+  name = <span class="code-green">"John Paul"</span>
+  focus = [
+    <span class="code-green">"Python"</span>,
+    <span class="code-green">"Web Apps"</span>,
+    <span class="code-green">"Problem Solving"</span>
+  ]
+
+  <span class="code-purple">def</span> build(self):
+    <span class="code-purple">return</span> <span class="code-green">"Something useful."</span></pre>
+    </div>
+    <div class="floating-chip chip-python">⌘ Python</div><div class="floating-chip chip-flask">✳ Flask</div><div class="floating-chip chip-sql">▦ SQL</div>
+    <div class="art-caption mono">CREATIVE MIND · LOGICAL BUILDER</div>
+  </div>
+  <a class="scroll-cue mono" href="#about">SCROLL TO EXPLORE ↓</a>
+</section>
+
+<section class="section about-section" id="about">
+  <div class="section-kicker mono">01 / ABOUT</div>
+  <div class="section-heading"><h2>Curious by nature.<br><span class="muted">Builder by choice.</span></h2><p>I enjoy turning complex ideas into clean, practical digital experiences.</p></div>
+  <div class="about-grid">
+    <div class="about-copy"><p>I'm an aspiring software developer who enjoys learning by building. My interests include Python development, backend logic, data-driven applications and modern web interfaces.</p><p>I believe good software should be useful, understandable and built with care. I'm currently growing my skills through hands-on projects and continuous learning.</p><a class="text-link" href="#contact">Have a project in mind? Let's connect ↗</a></div>
+    <div class="about-stats"><div class="stat"><strong>01</strong><span>Curiosity-first<br>mindset</span></div><div class="stat"><strong>∞</strong><span>Things to<br>learn and build</span></div><div class="stat"><strong>100%</strong><span>Committed to<br>growing</span></div></div>
+  </div>
+</section>
+
+<section class="section skills-section" id="skills">
+  <div class="section-kicker mono">02 / TOOLKIT</div><div class="section-heading"><h2>Tools I use to<br><span class="muted">make things happen.</span></h2><p>A growing toolkit for building reliable applications from idea to implementation.</p></div>
+  <div class="skills-grid">
+    <article class="skill-card"><span class="skill-icon">Py</span><h3>Python</h3><p>Core programming, OOP, scripting and application logic.</p><div class="skill-tags"><span>OOP</span><span>Pandas</span></div></article>
+    <article class="skill-card"><span class="skill-icon">Fl</span><h3>Flask</h3><p>Lightweight web applications, routes and backend integration.</p><div class="skill-tags"><span>REST basics</span><span>Jinja</span></div></article>
+    <article class="skill-card"><span class="skill-icon">DB</span><h3>Databases</h3><p>Relational data, queries and persistent application storage.</p><div class="skill-tags"><span>SQL</span><span>SQLite</span></div></article>
+    <article class="skill-card"><span class="skill-icon">UI</span><h3>Frontend</h3><p>Responsive interfaces and interactive browser experiences.</p><div class="skill-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></article>
+    <article class="skill-card"><span class="skill-icon">Git</span><h3>Developer tools</h3><p>Version control, debugging and iterative development.</p><div class="skill-tags"><span>Git</span><span>GitHub</span></div></article>
+    <article class="skill-card skill-note"><span class="note-mark">✳</span><h3>Always learning</h3><p>Exploring better ways to write, design and ship software.</p><a href="#contact" class="text-link">Let's collaborate ↗</a></article>
+  </div>
+</section>
+
+<section class="section projects-section" id="projects">
+  <div class="section-kicker mono">03 / SELECTED WORK</div><div class="section-heading"><h2>Some things I've<br><span class="muted">put into motion.</span></h2><p>Projects are managed dynamically from the portfolio admin dashboard.</p></div>
+  <div class="project-grid">
+    {% for project in projects %}
+    <article class="project-card reveal">
+      <div class="project-image">
+        {% if project.image %}<img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }} preview">
+        {% else %}<div class="project-placeholder"><span class="placeholder-symbol">{% if loop.index == 1 %}◈{% else %}⌘{% endif %}</span><span class="mono">PROJECT / {{ "%02d"|format(loop.index) }}</span></div>{% endif %}
+        {% if project.featured %}<span class="featured-label">FEATURED</span>{% endif %}
+      </div>
+      <div class="project-info"><div class="project-title-row"><h3>{{ project.title }}</h3><span>↗</span></div><p>{{ project.description }}</p>
+        <div class="project-bottom"><div class="skill-tags">{% for tech in project.technologies.split(",") %}{% if tech.strip() %}<span>{{ tech.strip() }}</span>{% endif %}{% endfor %}</div>
+        <div class="project-links">{% if project.project_url %}<a href="{{ project.project_url }}" target="_blank" rel="noreferrer">LIVE ↗</a>{% endif %}{% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noreferrer">CODE ↗</a>{% endif %}</div></div>
+      </div>
+    </article>
+    {% else %}<p class="empty-state">New projects will appear here soon.</p>{% endfor %}
+  </div>
+</section>
+
+<section class="section contact-section" id="contact">
+  <div class="section-kicker mono">04 / SAY HELLO</div><div class="contact-grid">
+    <div><h2>Have a good idea?<br><span class="gradient-text">Let's build it.</span></h2><p>I'm open to opportunities, collaborations and conversations about software and technology.</p><a class="contact-email" href="mailto:hello@example.com">hello@example.com ↗</a></div>
+    <form class="contact-form" action="{{ url_for('contact') }}" method="post">
+      <label>Your name<input name="name" required placeholder="Jane Smith"></label>
+      <label>Email address<input name="email" type="email" required placeholder="jane@example.com"></label>
+      <label>Your message<textarea name="message" rows="4" required placeholder="Tell me a little about what you're thinking..."></textarea></label>
+      <button class="btn btn-primary" type="submit">Send message <span>↗</span></button>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="site-footer"><a class="brand" href="#home">P<span>JP</span>.</a><span class="mono">DESIGNED & BUILT BY PALIPE JOHN PAUL · 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
+{% endblock %}

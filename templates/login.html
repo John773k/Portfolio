@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | PJP{% endblock %}
+{% block content %}
+<div class="admin-shell login-shell"><a class="brand" href="{{ url_for('home') }}">P<span>JP</span>.</a><form class="admin-form login-form" method="post"><p class="section-kicker mono">PRIVATE AREA / 01</p><h1>Welcome back.</h1><p class="muted">Sign in to manage your portfolio.</p><label>Username<input name="username" required autocomplete="username"></label><label>Password<input type="password" name="password" required autocomplete="current-password"></label><button class="btn btn-primary" type="submit">Sign in ↗</button><a class="text-link" href="{{ url_for('home') }}">← Back to portfolio</a></form></div>
+{% endblock %}

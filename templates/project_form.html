@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if project.id else 'Add' }} Project | PJP{% endblock %}
+{% block content %}
+<div class="admin-shell form-shell"><a class="brand" href="{{ url_for('dashboard') }}">P<span>JP</span>.</a><form class="admin-form project-edit-form" method="post" enctype="multipart/form-data"><p class="section-kicker mono">PORTFOLIO CONTENT / PROJECT</p><h1>{{ 'Edit project' if project.id else 'Add a project' }}<span class="gradient-text">.</span></h1>
+<label>Project title<input name="title" required value="{{ project.title or '' }}" placeholder="Project name"></label>
+<label>Description<textarea name="description" rows="5" required placeholder="What does it do? What problem does it solve?">{{ project.description or '' }}</textarea></label>
+<label>Technologies <span class="muted">(comma separated)</span><input name="technologies" value="{{ project.technologies or '' }}" placeholder="Python, Flask, SQLite"></label>
+<label>Live project URL<input name="project_url" type="url" value="{{ project.project_url or '' }}" placeholder="https://example.com"></label>
+<label>GitHub URL<input name="github_url" type="url" value="{{ project.github_url or '' }}" placeholder="https://github.com/username/project"></label>
+<label>Project image <input type="file" name="image" accept=".png,.jpg,.jpeg,.webp,.gif"></label>
+{% if project.image %}<p class="muted">Current image: {{ project.image }}</p>{% endif %}
+<label class="check-label"><input type="checkbox" name="featured" {% if project.featured %}checked{% endif %}> Mark as featured</label>
+<div class="form-actions"><button class="btn btn-primary" type="submit">Save project ↗</button><a class="btn btn-ghost" href="{{ url_for('dashboard') }}">Cancel</a></div></form></div>
+{% endblock %}
